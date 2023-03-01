@@ -159,9 +159,9 @@
             D = function (e, t) {
               B(e).forEach(t);
             },
-            H = [d],
-            N = [d, p],
-            V = [d, c, u],
+            V = [d],
+            H = [d, p],
+            N = [d, c, u],
             F = [m],
             R = function (e) {
               return !!e[f];
@@ -214,19 +214,19 @@
             Q = {
               IMG: function (e, t) {
                 $(e, function (e) {
-                  W(e, V), J(e, t);
+                  W(e, N), J(e, t);
                 }),
-                  W(e, V),
+                  W(e, N),
                   J(e, t);
               },
               IFRAME: function (e, t) {
-                W(e, H), K(e, d, E(e, t.data_src));
+                W(e, V), K(e, d, E(e, t.data_src));
               },
               VIDEO: function (e, t) {
                 D(e, function (e) {
-                  W(e, H), K(e, d, E(e, t.data_src));
+                  W(e, V), K(e, d, E(e, t.data_src));
                 }),
-                  W(e, N),
+                  W(e, H),
                   K(e, p, E(e, t.data_poster)),
                   K(e, d, E(e, t.data_src)),
                   e.load();
@@ -303,7 +303,7 @@
                         P(t, s.class_error),
                         x(t, w),
                         k(s.callback_error, t, i),
-                        s.restore_on_error && Y(t, V),
+                        s.restore_on_error && Y(t, N),
                         n || ee(s, i);
                     })(0, e, t, s),
                       ne(i);
@@ -368,20 +368,20 @@
             },
             de = function (e) {
               $(e, function (e) {
-                Y(e, V);
+                Y(e, N);
               }),
-                Y(e, V);
+                Y(e, N);
             },
             ce = {
               IMG: de,
               IFRAME: function (e) {
-                Y(e, H);
+                Y(e, V);
               },
               VIDEO: function (e) {
                 D(e, function (e) {
-                  Y(e, H);
+                  Y(e, V);
                 }),
-                  Y(e, N),
+                  Y(e, H),
                   e.load();
               },
               OBJECT: function (e) {
@@ -2613,8 +2613,8 @@
             "prev" === t.swipeDirection && t.slideTo(null !== w ? w : h));
       }
     }
-    let H;
-    function N() {
+    let V;
+    function H() {
       const e = this,
         { params: t, el: s } = e;
       if (s && 0 === s.offsetWidth) return;
@@ -2639,15 +2639,15 @@
         e.autoplay &&
           e.autoplay.running &&
           e.autoplay.paused &&
-          (clearTimeout(H),
-          (H = setTimeout(() => {
+          (clearTimeout(V),
+          (V = setTimeout(() => {
             e.autoplay.resume();
           }, 500))),
         (e.allowSlidePrev = n),
         (e.allowSlideNext = i),
         e.params.watchOverflow && a !== e.snapGrid && e.checkOverflow();
     }
-    function V(e) {
+    function N(e) {
       const t = this;
       t.enabled &&
         (t.allowClick ||
@@ -2708,10 +2708,10 @@
               r.ios || r.android
                 ? "resize orientationchange observerUpdate"
                 : "resize observerUpdate",
-              N,
+              H,
               !0
             )
-          : e[c]("observerUpdate", N, !0),
+          : e[c]("observerUpdate", H, !0),
         n[d]("load", e.onLoad, { capture: !0 });
     };
     const X = (e, t) => e.grid && t.grid && t.grid.rows > 1;
@@ -2881,7 +2881,7 @@
               (e.onTouchMove = $.bind(e)),
               (e.onTouchEnd = D.bind(e)),
               s.cssMode && (e.onScroll = F.bind(e)),
-              (e.onClick = V.bind(e)),
+              (e.onClick = N.bind(e)),
               (e.onLoad = q.bind(e)),
               j || (t.addEventListener("touchstart", W), (j = !0)),
               Y(e, "on");
@@ -4094,7 +4094,6 @@
             observeParents: !0,
             slidesPerView: 4,
             spaceBetween: 20,
-            autoHeight: !0,
             speed: 800,
             pagination: {
               el: ".slider-quality__pagging",
@@ -4102,13 +4101,14 @@
               type: "bullets",
             },
             breakpoints: {
-              320: { slidesPerView: 1, spaceBetween: 0, autoHeight: !0 },
+              320: { slidesPerView: 1, spaceBetween: 0 },
               472: { slidesPerView: 1.5, spaceBetween: 20 },
-              596: { slidesPerView: 2.5, spaceBetween: 20 },
-              768: { slidesPerView: 3, spaceBetween: 20 },
-              1347: { slidesPerView: 4, spaceBetween: 30 },
+              654: { slidesPerView: 2, spaceBetween: 20 },
+              754: { slidesPerView: 2.5, spaceBetween: 20 },
+              998: { slidesPerView: 3, spaceBetween: 30 },
+              1354: { slidesPerView: 4, spaceBetween: 30 },
             },
-            on: {},
+            on: { touchStart: function () {} },
           }),
         document.querySelector(".rpg__slider") &&
           new ee(".rpg__slider", {
@@ -4122,6 +4122,13 @@
             pagination: {
               el: ".slider-rpg-quality__pagging",
               type: "progressbar",
+            },
+            breakpoints: {
+              320: { slidesPerView: 2, spaceBetween: 15, autoHeight: !0 },
+              472: { slidesPerView: 3, spaceBetween: 20 },
+              596: { slidesPerView: 3, spaceBetween: 20 },
+              768: { slidesPerView: 3, spaceBetween: 20 },
+              1347: { slidesPerView: 3, spaceBetween: 30 },
             },
             on: {},
           });
